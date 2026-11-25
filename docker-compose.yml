@@ -1,0 +1,22 @@
+name: zefiro
+
+services:
+  # Web app statica (nginx). http://localhost:8080
+  web:
+    image: nginx:1.27-alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./web/public:/usr/share/nginx/html:ro
+      - ./web/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped
+
+  # Pipeline dati: si lancia a mano, scrive i JSON in web/public/data.
+  #   make data
+  pipeline:
+    build: ./pipeline
+    profiles: ["tools"]
+    user: "${UID:-1000}:${GID:-1000}"
+    volumes:
+      - ./web/public/data:/data
+      - ./pipeline/cache:/cache

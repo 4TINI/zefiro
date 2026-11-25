@@ -1,0 +1,161 @@
+# Zefiro – configurazione della pipeline dati del prototipo.
+#
+# La pipeline scarica una sola volta i dati della finestra temporale indicata
+# e li salva come JSON statici in web/public/data/.
+
+window:
+  start: "2026-02-10"   # primo giorno selezionabile nell'app
+  end: "2026-02-16"     # ultimo giorno selezionabile nell'app
+  history_days: 5       # giorni precedenti usati per l'evoluzione (neve, vento, bollettini)
+
+aineva:
+  bulletin_json: "https://bollettini.aineva.it/albina_files/{date}/{date}_AINEVA_it_CAAMLv6.json"
+  micro_regions: "https://regions.avalanches.org/micro-regions/IT-21_micro-regions.geojson.json"
+  # Nomi ufficiali EAWS (i nomi dentro il CAAML non sono affidabili).
+  micro_region_names: "https://regions.avalanches.org/micro-regions_names/it.json"
+  region_prefix: "IT-21"          # Piemonte
+  treeline_m: 2000                # quota usata quando il bollettino dice "treeline"
+
+meteo:
+  # Historical Forecast API: archivio delle previsioni ad alta risoluzione,
+  # include lo zero termico (non presente in ERA5).
+  url: "https://historical-forecast-api.open-meteo.com/v1/forecast"
+  hourly:
+    - temperature_2m
+    - precipitation
+    - rain
+    - snowfall
+    - snow_depth
+    - freezing_level_height
+    - cloud_cover
+    - wind_speed_10m
+    - wind_gusts_10m
+    - wind_direction_10m
+
+dem:
+  # Copernicus GLO-30, tile COG pubblici: si leggono solo i blocchi necessari.
+  tile_url: "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_{lat}_00_{lon}_00_DEM/Copernicus_DSM_COG_10_{lat}_00_{lon}_00_DEM.tif"
+  sample_step_m: 25               # passo di ricampionamento della traccia
+  margin_deg: 0.02                # margine attorno alla traccia (~2 km): area della vista 3D
+
+siva:
+  # Arpa Piemonte – Sistema Informativo Valanghe (SIVA), shapefile per provincia, CC BY 4.0.
+  # Solo visualizzazione: non entra nel punteggio.
+  zip_url: "https://webgis.arpa.piemonte.it/w-metadoc/Download/valanghe/valanghe.zip"
+  buffer_m: 30                    # un punto della traccia "attraversa" un sito entro questa distanza
+  events_radius_m: 1500           # eventi storici puntuali mostrati entro questo raggio
+
+routes:
+  - id: albergian-soucheres-basses
+    name: "Monte Albergian da Soucheres Basses"
+    valley: "Val Chisone"
+    province: TO
+    municipality: Pragelato
+    gulliver_url: "https://www.gulliver.it/itinerari/albergian-monte-da-soucheres-basses/"
+    difficulty: BS
+    gulliver_aspect: "Nord-Ovest"
+    gulliver_gain_m: 1565
+    start_name: "Soucheres Basses"
+    summit_name: "Monte Albergian"
+    description: >-
+      Dalla frazione di Soucheres Basses per la forestale verso Capanna d'Amont.
+      Fuori dal bosco si risale l'ampio vallone, la Côte de la Saume e il pendio
+      fino al colletto a monte della Côte Blegier. Per cresta fin sotto la croce.
+      Con neve dura l'ultimo pendio ripido a 2900 m richiede ramponi.
+    track:
+      # Traccia GPX pubblicata su Gulliver (salita + discesa): si tiene solo la salita.
+      gpx_url: "https://www.gulliver.it/wp-content/uploads/2025/02/Albergian_skialp.gpx"
+    reports:
+      # Inserite a mano dalle pagine Gulliver (nessuno scraping automatico).
+      - date: "2026-02-07"
+        user: giovanni-bonino
+        relation: nearby
+        route_name: "Gran Costa (Monte) da Ruà"
+        url: "https://www.gulliver.it/itinerari/gran-costa-monte-da-rua/2026/02/07/335054/"
+        rating: null
+        snow_top: "Crosta da rigelo non portante"
+        snow_bottom: "Crosta da rigelo non portante"
+        snow_line_m: 1500
+        observations: "Nessuno"
+        summary: "Scelta prudente su pendii poco inclinati. Manto trasformato e assestato, discesa quasi tutta in crosta molto faticosa."
+      - date: "2026-01-02"
+        user: attilailventoso
+        relation: same
+        url: "https://www.gulliver.it/itinerari/albergian-monte-da-soucheres-basses/2026/01/02/333028/"
+        rating: 1
+        snow_top: "Crosta da vento/sastrugi"
+        snow_bottom: "Polverosa"
+        snow_line_m: 1500
+        observations: "Visto cadere valanghe a lastroni"
+        summary: "Vento fortissimo, accumuli molto pericolosi. Un lastrone si è staccato davanti al gruppo sulla traccia; in discesa il manto si è crepato due volte."
+      - date: "2026-01-01"
+        user: davec94
+        relation: same
+        url: "https://www.gulliver.it/itinerari/albergian-monte-da-soucheres-basses/2026/01/01/333000/"
+        rating: 5
+        snow_top: "Polverosa"
+        snow_bottom: "Polverosa pesante"
+        snow_line_m: null
+        observations: "Nessuno"
+        summary: "Traccia nel bosco che evita la stradina. Forte vento da N in cima, discesa a nord ancora ottima fino al pianoro."
+      - date: "2025-12-31"
+        user: rok1976
+        relation: same
+        url: "https://www.gulliver.it/itinerari/albergian-monte-da-soucheres-basses/2025/12/31/332914/"
+        rating: 5
+        snow_top: "Polverosa"
+        snow_bottom: "Polverosa"
+        snow_line_m: 1300
+        observations: "Nessuno"
+        summary: "Condizioni eccellenti, vetta con gli sci senza ramponi. Pietre nei primi 200 m del pendio nord, poi polvere fino in fondo."
+
+  - id: chersogno-campiglione
+    name: "Monte Chersogno da Campiglione"
+    valley: "Valle Maira"
+    province: CN
+    municipality: Prazzo
+    gulliver_url: "https://www.gulliver.it/itinerari/chersogno-monte-da-campiglione/"
+    difficulty: BSA
+    gulliver_aspect: "Tutte"
+    gulliver_gain_m: 1312
+    start_name: "Campiglione"
+    summit_name: "Monte Chersogno"
+    description: >-
+      Oltre le Grange Chiotti si raggiunge la conca sotto la parete est del
+      Chersogno. Con un ampio semicerchio si sale al Colle di Chiosso e ci si
+      immette a metà del ripido canale che porta al piano del Vallone. Si sale
+      alla depressione a 2880 m a est del Passo Chersogno e per la cresta ovest
+      alla croce di vetta.
+    track:
+      # Nessuna traccia GPX su Gulliver: waypoint da OpenStreetMap + descrizione.
+      # Tra un waypoint e l'altro la pipeline calcola il percorso a costo minimo
+      # sul DEM (penalizza i pendii ripidi): è una traccia STIMATA.
+      snap_to_terrain: true
+      waypoints:
+        - [44.51788, 7.04568, "Campiglione"]
+        - [44.52370, 7.03886, "Grange Chiotti"]
+        - [44.53321, 7.02469, "Colle di Chiosso Ovest"]
+        - [44.52580, 7.01780, "Depressione 2880 m"]
+        - [44.52681, 7.02008, "Monte Chersogno"]
+    reports:
+      - date: "2026-02-01"
+        user: frax
+        relation: nearby
+        route_name: "Chersogno (Monte) da Chiosso"
+        url: "https://www.gulliver.it/itinerari/chersogno-monteda-chiosso/2026/02/01/337254/"
+        rating: 4
+        snow_top: "Farinosa ventata"
+        snow_bottom: "Crosta da rigelo portante"
+        snow_line_m: null
+        observations: "Nessuno"
+        summary: "Stessa vetta dal versante di Elva. Farinosa ventata in alto, crosta portante in basso."
+      - date: "2024-03-19"
+        user: giovanni-o
+        relation: same
+        url: "https://www.gulliver.it/itinerari/chersogno-monte-da-campiglione/2024/03/19/301848/"
+        rating: 4
+        snow_top: null
+        snow_bottom: null
+        snow_line_m: null
+        observations: null
+        summary: "Ultima relazione sulla gita (stagione 2024)."

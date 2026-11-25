@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <clipPath id="squircle-light">
+      <rect x="16" y="16" width="480" height="480" rx="110" ry="110"/>
+    </clipPath>
+    <linearGradient id="longShadowLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B2239" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#0B2239" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <g clip-path="url(#squircle-light)">
+    <rect width="512" height="512" fill="#F8FAFC"/>
+    <polygon points="256,115 496,355 496,496 240,496 105,365" fill="url(#longShadowLight)"/>
+    <polygon points="256,115 105,365 256,365" fill="#132F4C"/>
+    <polygon points="256,115 407,365 256,365" fill="#1E4976"/>
+    <polygon points="165,215 85,365 210,365" fill="#0B2239"/>
+    <polygon points="256,115 224,168 242,162 256,176 270,162 288,168" fill="#FFFFFF"/>
+    <path d="M 272 195 L 365 195 L 222 308 C 202 324, 212 346, 240 352 L 345 375" 
+          fill="none" stroke="#F8FAFC" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 275 190 L 368 190 L 225 302 C 206 317, 215 338, 242 344 L 348 367" 
+          fill="none" stroke="#00B4D8" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 275 206 L 342 206 L 242 306 C 228 320, 234 332, 255 337 L 342 356" 
+          fill="none" stroke="#48CAE4" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 330 165 L 405 165 C 422 165, 422 140, 405 140 C 394 140, 390 148, 394 154" 
+          fill="none" stroke="#00B4D8" stroke-width="11" stroke-linecap="round"/>
+    <path d="M 345 215 L 415 215 C 430 215, 430 238, 415 238 C 405 238, 401 231, 405 225" 
+          fill="none" stroke="#48CAE4" stroke-width="10" stroke-linecap="round"/>
+  </g>
+</svg>

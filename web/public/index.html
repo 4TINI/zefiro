@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zefiro</title>
+  <meta name="description" content="Zefiro – pianificare gite di scialpinismo incrociando bollettini valanghe, terreno, meteo e relazioni.">
+  <link rel="icon" href="img/zefiro-icon-light.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="css/zefiro.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#/">
+      <img class="brand-icon light-only" src="img/zefiro-icon-light.svg" alt="">
+      <img class="brand-icon dark-only" src="img/zefiro-icon-dark.svg" alt="">
+      <span class="brand-name">Zefiro</span>
+    </a>
+    <span class="proto-badge">Prototipo · dati storici <span id="window-label"></span></span>
+  </header>
+
+  <main class="layout">
+    <!-- ======================= Scopri la gita migliore ======================= -->
+    <aside class="sidebar">
+      <section class="panel">
+        <h2 class="panel-title">Scopri la gita migliore</h2>
+        <form id="search" class="form">
+          <label>Area
+            <select name="area" id="f-area"></select>
+          </label>
+          <label>Giorno
+            <select name="date" id="f-date"></select>
+          </label>
+          <div class="form-row">
+            <label>Dislivello max (m)
+              <input type="number" name="gain" id="f-gain" min="300" max="3000" step="50" value="1800">
+            </label>
+            <label>Lunghezza max (km)
+              <input type="number" name="length" id="f-length" min="1" max="30" step="0.5" value="12">
+            </label>
+          </div>
+          <label>Difficoltà max
+            <select name="diff" id="f-diff">
+              <option value="MS">MS – medio sciatore</option>
+              <option value="BS">BS – buon sciatore</option>
+              <option value="BSA" selected>BSA – buon sciatore alpinista</option>
+              <option value="OS">OS – ottimo sciatore</option>
+              <option value="OSA">OSA – ottimo sciatore alpinista</option>
+            </select>
+          </label>
+          <label>Comportamento del gruppo
+            <select name="group" id="f-group"></select>
+          </label>
+        </form>
+      </section>
+
+      <div id="pane-toggle" class="seg mobile-only" role="group" aria-label="Vista">
+        <button type="button" data-pane="list" aria-pressed="true">Lista</button>
+        <button type="button" data-pane="map" aria-pressed="false">Mappa</button>
+      </div>
+
+      <section class="panel results-panel">
+        <h2 class="panel-title">Gite per il <span id="results-day"></span></h2>
+        <div id="results-info" class="results-info"></div>
+        <ol id="results" class="results"></ol>
+        <div id="excluded"></div>
+      </section>
+
+      <p class="disclaimer">
+        Zefiro è un prototipo di studio. Non sostituisce il bollettino ufficiale,
+        la valutazione sul terreno e la formazione. Il rischio usa una versione
+        semplificata del metodo di riduzione di Munter.
+      </p>
+    </aside>
+
+    <!-- ======================= Radiografia gita ======================= -->
+    <section id="detail" class="detail" aria-live="polite">
+      <div class="empty">Seleziona una gita.</div>
+    </section>
+  </main>
+
+  <div id="tooltip" class="tooltip" role="tooltip" hidden></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

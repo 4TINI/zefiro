@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 720" width="1680" height="720">
+  <defs>
+    <linearGradient id="bgLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#EEF2F6"/>
+    </linearGradient>
+    <linearGradient id="bannerShadow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B2239" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#0B2239" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1680" height="720" fill="url(#bgLight)"/>
+
+  <g transform="translate(130, 395)">
+    <text x="0" y="0" 
+          font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" 
+          font-weight="800" 
+          font-size="168" 
+          letter-spacing="18" 
+          fill="#0F2942">ZEFIRO</text>
+    <rect x="6" y="38" width="110" height="8" rx="4" fill="#00B4D8"/>
+    <text x="136" y="49" 
+          font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" 
+          font-weight="600" 
+          font-size="26" 
+          letter-spacing="6" 
+          fill="#475569">ALPINE SNOW &amp; AVALANCHE ORACLE</text>
+  </g>
+
+  <g transform="translate(1030, 60) scale(1.25)">
+    <polygon points="256,115 520,379 520,528 240,528 105,365" fill="url(#bannerShadow)"/>
+    <polygon points="256,115 105,365 256,365" fill="#132F4C"/>
+    <polygon points="256,115 407,365 256,365" fill="#1E4976"/>
+    <polygon points="165,215 85,365 210,365" fill="#0B2239"/>
+    <polygon points="256,115 224,168 242,162 256,176 270,162 288,168" fill="#FFFFFF"/>
+    <path d="M 272 195 L 365 195 L 222 308 C 202 324, 212 346, 240 352 L 345 375" 
+          fill="none" stroke="#F1F5F9" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 275 190 L 368 190 L 225 302 C 206 317, 215 338, 242 344 L 348 367" 
+          fill="none" stroke="#00B4D8" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 275 206 L 342 206 L 242 306 C 228 320, 234 332, 255 337 L 342 356" 
+          fill="none" stroke="#48CAE4" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 330 165 L 405 165 C 422 165, 422 140, 405 140 C 394 140, 390 148, 394 154" 
+          fill="none" stroke="#00B4D8" stroke-width="11" stroke-linecap="round"/>
+    <path d="M 345 215 L 415 215 C 430 215, 430 238, 415 238 C 405 238, 401 231, 405 225" 
+          fill="none" stroke="#48CAE4" stroke-width="10" stroke-linecap="round"/>
+  </g>
+</svg>
